@@ -174,14 +174,6 @@
       ]
     },
     {
-      "name": "ffmpeg_kit_flutter_new",
-      "version": "3.2.0",
-      "dependencies": [
-        "ffmpeg_kit_flutter_platform_interface",
-        "flutter"
-      ]
-    },
-    {
       "name": "ffi",
       "version": "2.1.4",
       "dependencies": []
@@ -617,14 +609,6 @@
       ]
     },
     {
-      "name": "ffmpeg_kit_flutter_platform_interface",
-      "version": "0.2.1",
-      "dependencies": [
-        "flutter",
-        "plugin_platform_interface"
-      ]
-    },
-    {
       "name": "sky_engine",
       "version": "0.0.0",
       "dependencies": []
@@ -809,6 +793,22 @@
       "dependencies": [
         "source_span",
         "string_scanner"
+      ]
+    },
+    {
+      "name": "ffmpeg_kit_flutter_new",
+      "version": "3.2.0",
+      "dependencies": [
+        "ffmpeg_kit_flutter_platform_interface",
+        "flutter"
+      ]
+    },
+    {
+      "name": "ffmpeg_kit_flutter_platform_interface",
+      "version": "0.2.1",
+      "dependencies": [
+        "flutter",
+        "plugin_platform_interface"
       ]
     }
   ],
