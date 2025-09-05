@@ -140,14 +140,8 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "ffmpeg_kit_flutter_android",
-      "rootUri": "file:///Users/richard/.pub-cache/hosted/pub.dev/ffmpeg_kit_flutter_android-1.7.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
       "name": "ffmpeg_kit_flutter_new",
-      "rootUri": "file:///Users/richard/.pub-cache/hosted/pub.dev/ffmpeg_kit_flutter_new-1.6.1",
+      "rootUri": "file:///Users/richard/.pub-cache/hosted/pub.dev/ffmpeg_kit_flutter_new-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
