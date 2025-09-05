@@ -9,6 +9,9 @@ enum WhisperModel {
   /// small model for all languages
   small('small'),
 
+  /// small quantized model for all languages
+  smallQ('small-q5_1'),
+
   /// medium model for all languages
   medium('medium'),
 
