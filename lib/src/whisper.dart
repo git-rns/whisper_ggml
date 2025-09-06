@@ -6,7 +6,6 @@ import 'package:ffi/ffi.dart';
 import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
 import 'package:whisper_ggml/src/models/whisper_model.dart';
-import 'package:whisper_ggml/src/whisper_audio_convert.dart';
 
 import 'models/requests/transcribe_request.dart';
 import 'models/requests/transcribe_request_dto.dart';
@@ -16,7 +15,6 @@ import 'models/responses/whisper_version_response.dart';
 import 'models/whisper_dto.dart';
 
 export 'models/_models.dart';
-export 'whisper_audio_convert.dart';
 
 /// Native request type
 typedef WReqNative = Pointer<Utf8> Function(Pointer<Utf8> body);
@@ -46,9 +44,8 @@ class Whisper {
     required WhisperRequestDto whisperRequest,
   }) async {
     return Isolate.run(() async {
-      final Pointer<Utf8> data = whisperRequest
-          .toRequestString()
-          .toNativeUtf8();
+      final Pointer<Utf8> data =
+          whisperRequest.toRequestString().toNativeUtf8();
       final Pointer<Utf8> res = _openLib()
           .lookupFunction<WReqNative, WReqNative>('request')
           .call(data);
@@ -67,15 +64,8 @@ class Whisper {
     required String modelPath,
   }) async {
     try {
-      final WhisperAudioConvert converter = WhisperAudioConvert(
-        audioInput: File(transcribeRequest.audio),
-        audioOutput: File('${transcribeRequest.audio}.wav'),
-      );
-
-      final File? convertedFile = await converter.convert();
-
       final TranscribeRequest req = transcribeRequest.copyWith(
-        audio: convertedFile?.path ?? transcribeRequest.audio,
+        audio: transcribeRequest.audio,
       );
 
       final Map<String, dynamic> result = await _request(

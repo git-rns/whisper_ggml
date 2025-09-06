@@ -1,6 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:universal_io/io.dart';
 import 'package:whisper_ggml/src/models/whisper_model.dart';
 
 import 'models/whisper_result.dart';
@@ -11,7 +9,6 @@ class WhisperController {
   String? _dir;
 
   Future<void> initModel(WhisperModel model) async {
-    _dir ??= await getModelDir();
     _modelPath = '$_dir/ggml-${model.modelName}.bin';
   }
 
@@ -53,34 +50,9 @@ class WhisperController {
     }
   }
 
-  static Future<String> getModelDir() async {
-    final Directory libraryDirectory = Platform.isAndroid
-        ? await getApplicationSupportDirectory()
-        : await getLibraryDirectory();
-    return libraryDirectory.path;
-  }
+
 
   /// Get local path of model file
-  Future<String> getPath(WhisperModel model) async {
-    _dir ??= await getModelDir();
-    return '$_dir/ggml-${model.modelName}.bin';
-  }
 
   /// Download [model] to [destinationPath]
-  Future<String> downloadModel(WhisperModel model) async {
-    if (!File(await getPath(model)).existsSync()) {
-      final request = await HttpClient().getUrl(model.modelUri);
-
-      final response = await request.close();
-
-      final bytes = await consolidateHttpClientResponseBytes(response);
-
-      final File file = File(await getPath(model));
-      await file.writeAsBytes(bytes);
-
-      return file.path;
-    } else {
-      return await getPath(model);
-    }
-  }
 }
